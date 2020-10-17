@@ -27,6 +27,13 @@ html
       div(style = "padding-left:15%; padding-right:15%;")
          table.table(class = 'table-striped', style = '70%')
             //- tbody
+            th
+               td Info
+               td Title
+               td Description
+               td Probabilities
+               td Sentiment
+               td Keywords
             each article, index in newsList
                tr
                   //- td
@@ -42,12 +49,26 @@ html
                      h6 #{article.datePublished.substring(0,7).replace("T", "")}
                      h6 #{article.provider[0].name}
                      div(style = 'width: 100px;')
-                        img(src = 'https://i.imgur.com/pGNVAhj.png', style = 'width: 50px')
-                        img(src = 'https://i.imgur.com/PMaMow4.png', style = 'width: 50px')
+                        if article.robot.fake_news < .5
+                           img(src = 'https://i.imgur.com/pGNVAhj.png', style = 'width: 50px')
+                        if article.robot.extremely_biased < .5
+                           img(src = 'https://i.imgur.com/PMaMow4.png', style = 'width: 50px')
                   td
                      a(href = article.url style="") #{article.name}
                   td                
                      h6 #{article.description}
+                  td
+                     h5(style = 'font-size: 10px;') Fake-News Probability: #{article.robot.fake_news}
+                     h5(style = 'font-size: 10px;') Bias Probability: #{article.robot.extremely_biased}
+                     h5(style = 'font-size: 10px;') Clickbait Probability: #{article.robot.clickbait}
+                  td
+                     h5(style = 'font-size: 10px;') Positive Sentiment: #{article.sentiments.positive}
+                     h5(style = 'font-size: 10px;') Negative Sentiment: #{article.sentiments.negative}
+                     h5(style = 'font-size: 10px;') Neutral Sentiment: #{article.sentiments.neutral}
+                  td
+                     h5(style = 'font-size: 10px;') Keywords:
+                     each word in article.keywords
+                        h5(style = 'font-size: 10px;') #{word}
                   //- td
                   //-    //- img(src= require("./factualinfo.png"))
                   //-    //- img(src= require("./nobias.png"))
