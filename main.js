@@ -59,7 +59,7 @@ module.exports.fetchArticles = (query, count) => {
                         }
                         return 0
                     })
-                    console.log(news)
+                    resolve(news)
                 })
             })
             .catch((err) => {
