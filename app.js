@@ -26,7 +26,7 @@ const key = 'eee369f9e1e844028af31e527327ccb2'
 app.get('/', async function(req, res){
     console.log('pew pew');
     var newsList = [];
-    function getInfo(tracklist){
+    function getInfo(callback){
         axios({
             url: ('https://api.cognitive.microsoft.com/bing/v7.0/news/search?'), 
             method: 'get', 
@@ -35,7 +35,7 @@ app.get('/', async function(req, res){
                 'Ocp-Apim-Subscription-Key': key,
             },
             params: {
-                'q': 'india news',
+                'q': 'india politics',
                 'count': 10,
                 'mkt': 'en-IN',
                 'safeSearch': 'Moderate'
