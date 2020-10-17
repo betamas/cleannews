@@ -28,7 +28,6 @@ module.exports.fetchArticles = (query, count) => {
                 if (index !== -1) {
                     obj.url = obj.url.substring(0, index)
                 }
-                console.log(obj.url)
                 return fakeNewsPromise(fake_link + obj.url + '&title=')
             })
             let sentiments = result.data.value.map(obj => {
@@ -47,7 +46,11 @@ module.exports.fetchArticles = (query, count) => {
                         confidenceScores = { positive: (pos/sent_ratings[idx].documents.length), 
                             neutral: (neu/sent_ratings[idx].documents.length), negative: (neg/sent_ratings[idx].documents.length) }
                         obj['sentiments'] = confidenceScores
-                        return obj
+                        let employee = {
+                            ...obj,
+                            ...result.data.value[idx]
+                        };
+                        return employee
                     })
                     news.sort((a, b) => {
                         a_rating = a.robot.fake_news*weights[0] + a.robot.extremely_biased*weights[1] + a.robot.clickbait*weights[2] + a.sentiments.positive*weights[3] + a.sentiments.negative*weights[4]

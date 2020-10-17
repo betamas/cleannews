@@ -19,48 +19,9 @@ var newsList = [];
 // app.get('/callback', function(req, res) {
 // };
 
-const axios = require('axios')
-const key = 'eee369f9e1e844028af31e527327ccb2'
-
+const articles = require('./main.js')
 
 app.get('/', async function(req, res){
-    console.log('pew pew');
-    var newsList = [];
-    function getInfo(callback){
-        axios({
-            url: ('https://api.cognitive.microsoft.com/bing/v7.0/news/search?'), 
-            method: 'get', 
-            headers: {
-                'Content-Type': 'application/json',
-                'Ocp-Apim-Subscription-Key': key,
-            },
-            params: {
-                'q': 'india politics',
-                'count': 10,
-                'mkt': 'en-IN',
-                'safeSearch': 'Moderate'
-            }
-        })
-        .then(result => {
-            console.log(result.data);
-            // newsList = result.data['value'];
-            // newsList = JSON.stringify(newsList);
-            // newsList.push(body.value[0]);
-            console.log('body');
-            console.log(result.data.value);
-            for(var i = 0; i<10; i++){
-                // newsList.push(JSON.stringify(result.data.value[i]));
-                newsList.push(result.data.value[i]);
-                console.log('beep '+i);
-                console.log(result.data.value[i]);
-            }
-            // newsList = result.data.value;
-            loadPage(newsList);
-        })
-        .catch(function(err) {
-            console.log('Unfortunately, something has gone wrong.', err.message);
-        });
-    }
 
     function loadPage(newsList){
         console.log('load page');
@@ -71,10 +32,12 @@ app.get('/', async function(req, res){
         console.log('out');
     
     };
-    getInfo(loadPage);
-    console.log('after get info');
-    // loadPage(newslist);
-    console.log('after load page');
+    articles.fetchArticles('india politics', 10).then(res => {
+      loadPage(res)
+    })
+    .catch(function(err) {
+        console.log('Unfortunately, something has gone wrong.', err.message);
+    })
 });
 
 
