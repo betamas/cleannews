@@ -4,7 +4,7 @@ const axios = require('axios')
 const key = 'eee369f9e1e844028af31e527327ccb2'
 const bing_url = 'https://api.cognitive.microsoft.com/bing/v7.0/news/search?'
 const fake_link = 'https://api.fakenewsdetector.org/votes?url='
-const weights = [0.3, 0.2, 0.1, 0.2, 0.2]
+const weights = [1, 0.5, 0.3, 0.1, 0.1]
 
 module.exports.fetchArticles = (query, count) => {
     return new Promise((resolve, reject) => {
