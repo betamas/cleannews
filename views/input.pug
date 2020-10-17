@@ -42,6 +42,10 @@ html
                      a(href = article.url style="") #{article.name}
                   td                
                      h6 #{article.description}
+                  td
+                     //- img(src= require("./factualinfo.png"))
+                     //- img(src= require("./nobias.png"))
+                     img(src = 'https://imgur.com/a/XhZQUgo')
                   //- h6() #{article.datePublished.substring(0,16).replace("T", "")}
                   //- h6(class="rotate2") ~~spotlight~~
                   //- h6() #{article.provider[0].name}
