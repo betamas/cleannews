@@ -1,7 +1,55 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+link(rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
+//- link(rel="stylesheet" type="text/css" href="https://bootswatch.com/4/materia/bootstrap.min.css")
+//- link(rel="stylesheet" type="text/css" href="https://bootswatch.com/4/materia/bootstrap.css")
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+//- link(rel='stylesheet',type="text/css", href='/stylesheets/bootstrap.css')
+//- link(rel='stylesheet',type="text/css", href='/stylesheets/bootstrap.min.css')
+style
+   include ../stylesheets/bootstrap.css
+//- style
+//-    include 
 doctype html
 //extends layout
 html
    head
       title= cleannews
+      link(rel='stylesheet' href='https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css')
    body
-      h1 poop
+      br
+      h2(style = 'text-align: center;') cleannews
+      h6(style = 'text-align: center;') Unbaised, Verified, Analyzed News
+      br
+      div(style = "padding-left:15%; padding-right:15%;")
+         table.table(class = 'table-striped', style = '70%')
+            //- tbody
+            each article, index in newsList
+               tr
+                  //- td
+                  //-    h6 #{index}
+                  td
+                     if article.image && article.image.thumbnail && article.image.thumbnail.contentUrl
+                        div(style="position: relative; top: 0; left: 0;")
+                        //- img.className#IdName(src=track.image.thumbnail.contentUrl style="width: 80%; display: block; margin-left: auto;  position: relative; top: 0; left: 0;")
+                        //- img.className#IdName(src=track.image.thumbnail.contentUrl style="width: 70%; display: block; margin-left: auto;  position: absolute; top: 5px; right: 0px; border: 1px white solid;")
+                        //- img.className#IdName(src=article.image.thumbnail.contentUrl style="width: 68%; display: block; margin-left: auto;  position: relative; top: 0; left: 0;  opacity: 0.2; ")
+                        img.className#IdName(src=article.image.thumbnail.contentUrl)
+                  td
+                     h6 #{article.datePublished.substring(0,7).replace("T", "")}
+                     h6 #{article.provider[0].name}
+                  td
+                     a(href = article.url style="") #{article.name}
+                  td                
+                     h6 #{article.description}
+                  td
+                     //- img(src= require("./factualinfo.png"))
+                     //- img(src= require("./nobias.png"))
+                     img(src = 'https://imgur.com/a/XhZQUgo')
+                  //- h6() #{article.datePublished.substring(0,16).replace("T", "")}
+                  //- h6(class="rotate2") ~~spotlight~~
+                  //- h6() #{article.provider[0].name}
+                  //- br
+                  //- a(href = article.url style="") #{article.name.toLowerCase()}
+                  //- p
+                  //-    |#{article.description}
