@@ -33,6 +33,7 @@ app.get('/', async function(req, res){
     
     };
     articles.fetchArticles('india politics', 10).then(res => {
+        console.log(res);
       loadPage(res)
     })
     .catch(function(err) {
