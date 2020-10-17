@@ -41,46 +41,48 @@ html
                td
                   h6 Keywords
             each article, index in newsList
-               tr
-                  //- td
-                  //-    h6 #{index}
-                  td
-                     if article.image && article.image.thumbnail && article.image.thumbnail.contentUrl
-                        div(style="position: relative; top: 0; left: 0;")
-                        //- img.className#IdName(src=track.image.thumbnail.contentUrl style="width: 80%; display: block; margin-left: auto;  position: relative; top: 0; left: 0;")
-                        //- img.className#IdName(src=track.image.thumbnail.contentUrl style="width: 70%; display: block; margin-left: auto;  position: absolute; top: 5px; right: 0px; border: 1px white solid;")
-                        //- img.className#IdName(src=article.image.thumbnail.contentUrl style="width: 68%; display: block; margin-left: auto;  position: relative; top: 0; left: 0;  opacity: 0.2; ")
-                        img.className#IdName(src=article.image.thumbnail.contentUrl)
-                  td
-                     h6(style = 'font-size: 15px;') #{article.datePublished.substring(0,7).replace("T", "")}
-                     h6(style = 'font-size: 15px;') #{article.provider[0].name}
-                     div(style = 'width: 100px;')
-                        if article.robot.fake_news < .5
-                           img(src = 'https://i.imgur.com/pGNVAhj.png', style = 'width: 50px')
-                        if article.robot.extremely_biased < .5
-                           img(src = 'https://i.imgur.com/PMaMow4.png', style = 'width: 50px')
-                        if article.robot.clickbait < .5
-                           img(src = 'https://i.imgur.com/ldHfmXq.png', style = 'width: 50px')
-                           
-                  td
-                     a(href = article.url style="") #{article.name}
-                  td                
-                     h6 #{article.description}
-                  td
-                     h5(style = 'font-size: 10px;') Fake-News Probability: #{((article.robot.fake_news)*100).toFixed(2)}%
-                     h5(style = 'font-size: 10px;') Bias Probability: #{((article.robot.extremely_biased)*100).toFixed(2)}%
-                     h5(style = 'font-size: 10px;') Clickbait Probability: #{((article.robot.clickbait)*100).toFixed(2)}%
-                  td
-                     h5(style = 'font-size: 10px;') Positive Sentiment:  #{((article.sentiments.positive)*100).toFixed(2)}%
-                     h5(style = 'font-size: 10px;') Negative Sentiment: #{((article.sentiments.negative)*100).toFixed(2)}%
-                     h5(style = 'font-size: 10px;') Neutral Sentiment: #{((article.sentiments.neutral)*100).toFixed(2)}%
-                  td
-                     h5(style = 'font-size: 10px;') Keywords:
-                     each word in article.keywords
-                        h5(style = 'font-size: 10px;') #{word}
-                  //- td
-                  //-    //- img(src= require("./factualinfo.png"))
-                  //-    //- img(src= require("./nobias.png"))
-                  //-    div(style = 'width: 100px;')
-                  //-       img(src = 'https://i.imgur.com/pGNVAhj.png', style = 'width: 70px')
-                  //-       img(src = 'https://i.imgur.com/PMaMow4.png', style = 'width: 70px')
+
+               if article.robot.fake_news < .5 && article.robot.extremely_biased < .5 && article.robot.clickbait < .5
+                  tr
+                     //- td
+                     //-    h6 #{index}
+                     td
+                        if article.image && article.image.thumbnail && article.image.thumbnail.contentUrl
+                           div(style="position: relative; top: 0; left: 0;")
+                           //- img.className#IdName(src=track.image.thumbnail.contentUrl style="width: 80%; display: block; margin-left: auto;  position: relative; top: 0; left: 0;")
+                           //- img.className#IdName(src=track.image.thumbnail.contentUrl style="width: 70%; display: block; margin-left: auto;  position: absolute; top: 5px; right: 0px; border: 1px white solid;")
+                           //- img.className#IdName(src=article.image.thumbnail.contentUrl style="width: 68%; display: block; margin-left: auto;  position: relative; top: 0; left: 0;  opacity: 0.2; ")
+                           img.className#IdName(src=article.image.thumbnail.contentUrl)
+                     td
+                        h6(style = 'font-size: 15px;') #{article.datePublished.substring(0,7).replace("T", "")}
+                        h6(style = 'font-size: 15px;') #{article.provider[0].name}
+                        div(style = 'width: 100px;')
+                           if article.robot.fake_news < .5
+                              img(src = 'https://i.imgur.com/pGNVAhj.png', style = 'width: 50px')
+                           if article.robot.extremely_biased < .5
+                              img(src = 'https://i.imgur.com/PMaMow4.png', style = 'width: 50px')
+                           if article.robot.clickbait < .5
+                              img(src = 'https://i.imgur.com/ldHfmXq.png', style = 'width: 50px')
+                              
+                     td
+                        a(href = article.url style="") #{article.name}
+                     td                
+                        h6 #{article.description}
+                     td
+                        h5(style = 'font-size: 10px;') Fake-News Probability: #{((article.robot.fake_news)*100).toFixed(2)}%
+                        h5(style = 'font-size: 10px;') Bias Probability: #{((article.robot.extremely_biased)*100).toFixed(2)}%
+                        h5(style = 'font-size: 10px;') Clickbait Probability: #{((article.robot.clickbait)*100).toFixed(2)}%
+                     td
+                        h5(style = 'font-size: 10px;') Positive Sentiment:  #{((article.sentiments.positive)*100).toFixed(2)}%
+                        h5(style = 'font-size: 10px;') Negative Sentiment: #{((article.sentiments.negative)*100).toFixed(2)}%
+                        h5(style = 'font-size: 10px;') Neutral Sentiment: #{((article.sentiments.neutral)*100).toFixed(2)}%
+                     td
+                        h5(style = 'font-size: 10px;') Keywords:
+                        each word in article.keywords
+                           h5(style = 'font-size: 10px;') #{word}
+                     //- td
+                     //-    //- img(src= require("./factualinfo.png"))
+                     //-    //- img(src= require("./nobias.png"))
+                     //-    div(style = 'width: 100px;')
+                     //-       img(src = 'https://i.imgur.com/pGNVAhj.png', style = 'width: 70px')
+                     //-       img(src = 'https://i.imgur.com/PMaMow4.png', style = 'width: 70px')
