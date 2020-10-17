@@ -17,23 +17,29 @@ html
       title= cleannews
       link(rel='stylesheet' href='https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css')
    body
-      br
-      div(style = "padding-left: 50%; display: flex; padding-left:15%; padding-right:15%; margin:0 auto; justify-content: center;")
-         img(src = 'https://i.imgur.com/KG8KXwo.png', style = 'width: 75px; height: 75px;') 
-         h1(style = 'text-align: center; display: inline;') cleannews
-
-      h6(style = 'text-align: center;') Unbaised, Verified, Analyzed News
-      br
+      div(class='jumbotron')
+         div(style = "padding-left: 50%; display: flex; padding-left:15%; padding-right:15%; margin:0 auto; justify-content: center;")
+            img(src = 'https://i.imgur.com/ziggMS1.png', style = 'width: 60px; ') 
+            h1(style = 'text-align: center; display: inline;') !{' '} cleannews
+         br
+         h6(style = 'text-align: center;') Unbaised, Verified, Analyzed News
+         br
       div(style = "padding-left:15%; padding-right:15%;")
          table.table(class = 'table-striped', style = '70%')
             //- tbody
             th
-               td Info
-               td Title
-               td Description
-               td Probabilities
-               td Sentiment
-               td Keywords
+               td 
+                  h6 Info
+               td 
+                  h6 Title
+               td 
+                  h6 Description
+               td 
+                  h6 Probabilities
+               td 
+                  h6 Sentiment
+               td
+                  h6 Keywords
             each article, index in newsList
                tr
                   //- td
@@ -46,25 +52,28 @@ html
                         //- img.className#IdName(src=article.image.thumbnail.contentUrl style="width: 68%; display: block; margin-left: auto;  position: relative; top: 0; left: 0;  opacity: 0.2; ")
                         img.className#IdName(src=article.image.thumbnail.contentUrl)
                   td
-                     h6 #{article.datePublished.substring(0,7).replace("T", "")}
-                     h6 #{article.provider[0].name}
+                     h6(style = 'font-size: 15px;') #{article.datePublished.substring(0,7).replace("T", "")}
+                     h6(style = 'font-size: 15px;') #{article.provider[0].name}
                      div(style = 'width: 100px;')
                         if article.robot.fake_news < .5
                            img(src = 'https://i.imgur.com/pGNVAhj.png', style = 'width: 50px')
                         if article.robot.extremely_biased < .5
                            img(src = 'https://i.imgur.com/PMaMow4.png', style = 'width: 50px')
+                        if article.robot.clickbait < .5
+                           img(src = 'https://i.imgur.com/ldHfmXq.png', style = 'width: 50px')
+                           
                   td
                      a(href = article.url style="") #{article.name}
                   td                
                      h6 #{article.description}
                   td
-                     h5(style = 'font-size: 10px;') Fake-News Probability: #{article.robot.fake_news}
-                     h5(style = 'font-size: 10px;') Bias Probability: #{article.robot.extremely_biased}
-                     h5(style = 'font-size: 10px;') Clickbait Probability: #{article.robot.clickbait}
+                     h5(style = 'font-size: 10px;') Fake-News Probability: #{((article.robot.fake_news)*100).toFixed(2)}%
+                     h5(style = 'font-size: 10px;') Bias Probability: #{((article.robot.extremely_biased)*100).toFixed(2)}%
+                     h5(style = 'font-size: 10px;') Clickbait Probability: #{((article.robot.clickbait)*100).toFixed(2)}%
                   td
-                     h5(style = 'font-size: 10px;') Positive Sentiment: #{article.sentiments.positive}
-                     h5(style = 'font-size: 10px;') Negative Sentiment: #{article.sentiments.negative}
-                     h5(style = 'font-size: 10px;') Neutral Sentiment: #{article.sentiments.neutral}
+                     h5(style = 'font-size: 10px;') Positive Sentiment:  #{((article.sentiments.positive)*100).toFixed(2)}%
+                     h5(style = 'font-size: 10px;') Negative Sentiment: #{((article.sentiments.negative)*100).toFixed(2)}%
+                     h5(style = 'font-size: 10px;') Neutral Sentiment: #{((article.sentiments.neutral)*100).toFixed(2)}%
                   td
                      h5(style = 'font-size: 10px;') Keywords:
                      each word in article.keywords
