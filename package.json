@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "app": "nodemon app.js",
-    "main": "nodemon main.js"
+    "main": "nodemon main.js",
+    "test2": "nodemon test2.js",
+    "test3": "nodemon test3.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +21,11 @@
   },
   "homepage": "https://github.com/betamas/cleannews#readme",
   "dependencies": {
+    "@azure/ai-text-analytics": "^5.0.1",
     "axios": "^0.20.0",
     "express": "^4.17.1",
     "jade": "^1.11.0",
+    "newspaperjs": "^1.0.8",
     "nodejs": "0.0.0",
     "nodemon": "^2.0.5",
     "pug": "^3.0.0"
