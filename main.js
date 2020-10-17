@@ -9,7 +9,7 @@ axios({
         'Ocp-Apim-Subscription-Key': key,
     },
     params: {
-        'q': 'microsoft',
+        'q': 'india news',
         'count': 10,
         'mkt': 'en-us',
         'safeSearch': 'Moderate'
