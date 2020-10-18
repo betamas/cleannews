@@ -1,5 +1,4 @@
 const sentiment = require('./sentiment.js')
-const toxicity = require('./toxicity.js')
 const axios = require('axios')
 const key = 'eee369f9e1e844028af31e527327ccb2'
 const bing_url = 'https://api.cognitive.microsoft.com/bing/v7.0/news/search?'
@@ -52,27 +51,6 @@ module.exports.fetchArticles = (query, count, toxicity_check) => {
                         };
                         return employee
                     })
-                    let toxics = news.map(obj => {
-                        return toxicity.test(obj.domain)
-                    })
-                    if (toxicity_check) {
-                        Promise.all(toxics).then((values) => {
-                            news.forEach((obj, idx) => {
-                                obj['toxicity'] = values[idx]
-                            })
-                            news.sort((a, b) => {
-                                a_rating = a.robot.fake_news*weights[0] + a.robot.extremely_biased*weights[1] + a.robot.clickbait*weights[2] + a.sentiments.positive*weights[3] + a.sentiments.negative*weights[4] + parseInt(a.toxicity)
-                                b_rating = b.robot.fake_news*weights[0] + b.robot.extremely_biased*weights[1] + b.robot.clickbait*weights[2] + b.sentiments.positive*weights[3] + b.sentiments.negative*weights[4] + parseInt(b.toxicity)
-                                if (a_rating > b_rating) {
-                                    return 1
-                                } else if (a_rating < b_rating) {
-                                    return -1
-                                }
-                                return 0
-                            })
-                            resolve(news)
-                        })
-                    } else {
                         news.sort((a, b) => {
                             a_rating = a.robot.fake_news*weights[0] + a.robot.extremely_biased*weights[1] + a.robot.clickbait*weights[2] + a.sentiments.positive*weights[3] + a.sentiments.negative*weights[4] + parseInt(a.toxicity)
                             b_rating = b.robot.fake_news*weights[0] + b.robot.extremely_biased*weights[1] + b.robot.clickbait*weights[2] + b.sentiments.positive*weights[3] + b.sentiments.negative*weights[4] + parseInt(b.toxicity)
@@ -84,7 +62,6 @@ module.exports.fetchArticles = (query, count, toxicity_check) => {
                             return 0
                         })
                         resolve(news)
-                    }
                 })
             })
             .catch((err) => {

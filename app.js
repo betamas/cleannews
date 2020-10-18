@@ -32,7 +32,7 @@ app.get('/', async function(req, res){
         console.log('out');
     
     };
-    articles.fetchArticles('indian politics', 10, false).then(res => {
+    articles.fetchArticles('indian politics', 50, false).then(res => {
         console.log(res);
       loadPage(res)
     })
