@@ -1,4 +1,4 @@
-const sentiment = require('./sentiment.js')
+const sentiment = require('./sentiment.js') 
 const axios = require('axios')
 const key = 'eee369f9e1e844028af31e527327ccb2'
 const bing_url = 'https://api.cognitive.microsoft.com/bing/v7.0/news/search?'
