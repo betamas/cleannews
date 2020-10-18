@@ -2,6 +2,7 @@
 
 # cleannews
 Unbiased, Verified, Analyzed News
+Learn more here: https://devpost.com/software/cleannews
 
 ## Motivation
 
