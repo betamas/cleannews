@@ -1,4 +1,4 @@
-![logo](https://i.imgur.com/ziggMS1.png =250x)
+<img src="https://i.imgur.com/ziggMS1.png" alt="cleannews" width="200"/>
 # cleannews
 Unbiased, Verified, Analyzed News
 
