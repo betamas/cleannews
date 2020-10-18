@@ -6,15 +6,16 @@ const labels = ['toxicity'];
 const Build = require('newspaperjs').Build;
 const Article = require('newspaperjs').Article;
 
-function getToxicity(sentence, model)
+function getToxicity(sentence)
 {
-    return new Promise((resolve, reject) => {
-        model.classify(sentence).then(predictions => {
-            resolve(predictions[0]['results'][0]['match'])
-        }).catch(reason=>{
-            console.log(reason);
+    return new Promise((resolve) => {
+        toxicity.load(threshold, labels).then(model => {
+            model.classify(sentence).then(predictions=> {
+                toxic = predictions[0]['results'][0]['match'];
+                resolve(toxic);
+            })
         })
-    })
+    });
 }
 
 module.exports.test = (textURL) =>
@@ -31,7 +32,7 @@ module.exports.test = (textURL) =>
                 sentencetox = new Array(documents.length);
                 for (i = 0; i < documents.length; i++)
                 {
-                    sentencetox[i] = getToxicity(documents[i], modelToxicity);
+                    sentencetox[i] = getToxicity(documents[i]);
                 }
                 Promise.all(sentencetox).then((values) => {
                     if (values.includes(true)) toxicityResult = true;

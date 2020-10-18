@@ -51,17 +51,17 @@ module.exports.fetchArticles = (query, count, toxicity_check) => {
                         };
                         return employee
                     })
-                        news.sort((a, b) => {
-                            a_rating = a.robot.fake_news*weights[0] + a.robot.extremely_biased*weights[1] + a.robot.clickbait*weights[2] + a.sentiments.positive*weights[3] + a.sentiments.negative*weights[4] + parseInt(a.toxicity)
-                            b_rating = b.robot.fake_news*weights[0] + b.robot.extremely_biased*weights[1] + b.robot.clickbait*weights[2] + b.sentiments.positive*weights[3] + b.sentiments.negative*weights[4] + parseInt(b.toxicity)
-                            if (a_rating > b_rating) {
-                                return 1
-                            } else if (a_rating < b_rating) {
-                                return -1
-                            }
-                            return 0
-                        })
-                        resolve(news)
+                    news.sort((a, b) => {
+                        a_rating = a.robot.fake_news*weights[0] + a.robot.extremely_biased*weights[1] + a.robot.clickbait*weights[2] + a.sentiments.positive*weights[3] + a.sentiments.negative*weights[4]
+                        b_rating = b.robot.fake_news*weights[0] + b.robot.extremely_biased*weights[1] + b.robot.clickbait*weights[2] + b.sentiments.positive*weights[3] + b.sentiments.negative*weights[4]
+                        if (a_rating > b_rating) {
+                            return 1
+                        } else if (a_rating < b_rating) {
+                            return -1
+                        }
+                        return 0
+                    })
+                    resolve(news)
                 })
             })
             .catch((err) => {
