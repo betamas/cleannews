@@ -1,5 +1,7 @@
 # cleannews
 
+Unbiased, Verified, Analyzed News
+
 
 ## Motivation
 * Now, more than ever, low quality news and misinformation is a problem
