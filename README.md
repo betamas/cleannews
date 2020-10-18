@@ -1,5 +1,5 @@
+![logo](https://i.imgur.com/ziggMS1.png =250x)
 # cleannews
-![logo](https://i.imgur.com/ziggMS1.png)
 Unbiased, Verified, Analyzed News
 
 
