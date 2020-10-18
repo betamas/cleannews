@@ -1,7 +1,7 @@
 # cleannews
 
 
-## Issues
+## Motivation
 * Now, more than ever, low quality news and misinformation is a problem
 * Large amounts of political distress and unrest within India (the selected country for this demo)
 * Many media outlets are either state sponsored with high biases or extremely critical
