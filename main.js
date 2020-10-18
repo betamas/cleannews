@@ -50,14 +50,6 @@ module.exports.fetchArticles = (query, count, toxicity_check) => {
                             ...obj,
                             ...result.data.value[idx]
                         };
-                        if (toxicity_check){
-                            toxicity.test(obj.domain).then(res => {
-                                obj['toxicity'] = res
-                            })
-                            .catch((err) => {
-                                console.log(err)
-                            })
-                        }
                         return employee
                     })
                     let toxics = news.map(obj => {
