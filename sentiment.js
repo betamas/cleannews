@@ -1,10 +1,13 @@
 const axios = require('axios')
 const Article = require('newspaperjs').Article
-const url = 'https://newstext.cognitiveservices.azure.com/text/analytics/v3.1-preview.1/sentiment'
-const key = '46f07a0298244e4b929c7ec1473e42ab'
+const url = 'https://cleannews.cognitiveservices.azure.com/text/analytics/v3.1-preview.1/sentiment'
+const key = 'ecdcd223d82c4647b4e2ec178d1cd6e3'
 
 module.exports.sentimentAnalysis = (text_url) => {
     return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            
+        }, 5000);
         Article(text_url)
         .then(result1=>{
             var text = result1['text'].split(/\r?\n/);
